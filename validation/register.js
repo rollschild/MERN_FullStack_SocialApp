@@ -6,11 +6,11 @@ module.exports = function validateRegisterInput(data) {
   let errors = {};
 
   data.name = !isEmpty(data.name) ? data.name : '';
-  console.log(data.name);
+  // console.log(data.name);
   data.email = !isEmpty(data.email) ? data.email : '';
-  console.log(data.email);
+  // console.log(data.email);
   data.password = !isEmpty(data.password) ? data.password : '';
-  console.log(data.password);
+  // console.log(data.password);
   data.password_confirmed = !isEmpty(data.password_confirmed) ? data.password_confirmed : '';
 
   if (validator.isEmpty(data.name)) {
