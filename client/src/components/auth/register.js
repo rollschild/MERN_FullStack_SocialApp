@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 // import axios from "axios";
+import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
@@ -20,6 +21,12 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   // user types will trigger this function
   // ...and we set state variables to the input
   onChange(e) {
@@ -36,23 +43,17 @@ class Register extends Component {
       password_confirmed: this.state.password_confirmed
     };
 
-    /* axios
-      .post("/api/users/register", newUser)
-      .then(res => console.log(res))
-      .catch(err => this.setState({ errors: err.response.data })); */
-
-    this.props.registerUser(newUser);
+    this.props.registerUser(newUser, this.props.history); // to redirect within this action
   }
 
   render() {
     const { errors } = this.state;
     // pulling errors out
 
-    const { user } = this.props.auth;
+    // const { user } = this.props.auth;
 
     return (
       <div className="register">
-        {user ? user.name : null}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -137,18 +138,20 @@ class Register extends Component {
   }
 }
 
-Register.PropTypes = {
+Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 // How to access auth?
 // this.props.auth
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 }); // it comes from rootReducer in index.js
 
 export default connect(
   mapStateToProps,
   { registerUser }
-)(Register);
+)(withRouter(Register));
