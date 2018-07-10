@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
   GET_PROFILE,
-  GET_ERRORS,
+  // GET_ERRORS,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE
 } from "./types";
@@ -10,7 +10,7 @@ import {
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading);
   axios
-    .get("/api/profile")
+    .get("/api/profiles")
     .then(res => {
       dispatch({
         type: GET_PROFILE,

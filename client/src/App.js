@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
@@ -13,6 +13,8 @@ import Register from "./components/auth/register";
 import Login from "./components/auth/login";
 import Dashboard from "./components/dashboard/dashboard";
 import { clearCurrentProfile } from "./actions/profileActions";
+import PrivateRoute from "./components/common/privateRoute";
+
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -34,6 +36,11 @@ if (localStorage.jwtToken) {
   }
 }
 
+/*
+the Switch component allows us to redirect to login page
+after logout. otherwise it will stay on the loading spinner page forever
+*/
+
 class App extends Component {
   // Provider provides apps with the store,
   // ...which holds the state
@@ -48,7 +55,9 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
             </div>
             <Footer />
           </div>
