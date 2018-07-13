@@ -153,8 +153,9 @@ class CreateProfile extends Component {
                   company name, and nickname."
                 />
                 <SelectListGroup
+                  placeholder="Status"
                   name="status"
-                  value={this.state.handle}
+                  value={this.state.status}
                   onChange={this.onChange}
                   options={options}
                   error={errors.status}

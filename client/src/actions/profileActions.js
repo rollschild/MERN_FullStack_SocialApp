@@ -5,6 +5,7 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS
 } from "./types";
+import { logoutUser } from "./authActions";
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
@@ -38,6 +39,32 @@ export const createProfile = (profileData, history) => dispatch => {
       })
     );
 };
+
+// Delete BOTH account & profile
+// we are using *dispatch* because we are
+// ...using an axios request
+export const deleteAccount = () => dispatch => {
+  if (
+    window.confirm("Are you sure to delete? This actions cannot be undone!")
+  ) {
+    axios
+      .delete("/api/profiles")
+      .then(res => {
+        dispatch(logoutUser());
+        /* dispatch({
+          type: SET_CURRENT_USER,
+          payload: {}
+        }); */
+      })
+      .catch(err => {
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        });
+      });
+  }
+};
+
 // Profile loading
 export const setProfileLoading = () => {
   return {
