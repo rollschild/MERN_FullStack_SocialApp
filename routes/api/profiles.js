@@ -244,7 +244,7 @@ router.post(
       .then(profile => {
         const newEducation = {
           school: req.body.school,
-          fieldOfStudy: req.body.fieldOfStudy,
+          fieldofstudy: req.body.fieldofstudy,
           from: req.body.from,
           degree: req.body.degree,
           to: req.body.to,

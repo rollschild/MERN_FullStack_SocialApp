@@ -82,14 +82,14 @@ class AddExperience extends Component {
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextInputField
-                  placeholder="Company"
+                  placeholder="* Company"
                   name="company"
                   value={this.state.company}
                   onChange={this.onChange}
                   error={errors.company}
                 />
                 <TextInputField
-                  placeholder="Job Title"
+                  placeholder="* Job Title"
                   name="title"
                   value={this.state.title}
                   onChange={this.onChange}
@@ -102,7 +102,7 @@ class AddExperience extends Component {
                   onChange={this.onChange}
                   error={errors.location}
                 />
-                <h6>From Date</h6>
+                <h6>* From Date</h6>
                 <TextInputField
                   name="from"
                   type="date"
