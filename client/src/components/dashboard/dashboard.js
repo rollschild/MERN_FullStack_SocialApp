@@ -6,6 +6,8 @@ import Spinner from "../common/spinner";
 import { Link } from "react-router-dom";
 import ProfileActions from "./ProfileActions";
 import { logoutUser } from "../../actions/authActions";
+import Experience from "./Experience";
+import Education from "./Education";
 
 class Dashboard extends Component {
   // lifecycle method
@@ -28,8 +30,7 @@ class Dashboard extends Component {
     } else {
       // first checkt to see if logged in user has profile
       if (Object.keys(profile).length > 0) {
-        dashboardContent = (
-          // I want there username to be a link
+        dashboardContent = ( // I want there username to be a link
           // to link to their profile
           <div>
             <p className="lead text-muted">
@@ -37,7 +38,8 @@ class Dashboard extends Component {
               <Link to={`/profiles/${profile.handle}`}>{user.name}</Link>
             </p>
             <ProfileActions />
-            {/*TODO: experience and education*/}
+            <Experience experience={profile.experience} />
+            <Education education={profile.education} />
             <div sytle={{ marginBottom: "60px" }} />
             <button
               onClick={this.onDeleteClick.bind(this)}
