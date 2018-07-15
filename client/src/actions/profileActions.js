@@ -26,6 +26,19 @@ export const getCurrentProfile = () => dispatch => {
     });
 };
 
+// Add experience
+export const addExperience = (expData, history) => dispatch => {
+  axios
+    .post("/api/profiles/experience", expData)
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Create profile
 // history: we want to redirect
 export const createProfile = (profileData, history) => dispatch => {
