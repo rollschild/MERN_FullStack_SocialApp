@@ -3,7 +3,8 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
-  GET_ERRORS
+  GET_ERRORS,
+  GET_PROFILES
 } from "./types";
 import { logoutUser } from "./authActions";
 
@@ -22,6 +23,26 @@ export const getCurrentProfile = () => dispatch => {
       dispatch({
         type: GET_PROFILE, // not GET_ERRORS
         payload: {}
+      });
+    });
+};
+
+// Get all profiles for all users
+export const getProfiles = () => dispatch => {
+  dispatch(setProfileLoading);
+  axios
+    .get("/api/profiles/all")
+    .then(res => {
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data // the actual profile
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_PROFILE, // not GET_ERRORS
+        payload: null // we want to keep the profile
+        // ...state as null in the reducer
       });
     });
 };

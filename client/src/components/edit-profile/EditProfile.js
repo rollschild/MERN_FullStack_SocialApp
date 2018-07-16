@@ -57,7 +57,7 @@ class EditProfile extends Component {
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
 
-      const skillsCSV = profile.skills.join(",");
+      const skillsCSV = profile.skills.join(", ");
 
       // If profile field does not exist,
       // ...make empty string
@@ -98,7 +98,8 @@ class EditProfile extends Component {
         twitter: profile.twitter,
         facebook: profile.facebook,
         linkedin: profile.linkedin,
-        youtube: profile.youtube
+        youtube: profile.youtube,
+        instagram: profile.instagram
       });
     }
   }
