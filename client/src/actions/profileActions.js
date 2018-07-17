@@ -10,7 +10,7 @@ import { logoutUser } from "./authActions";
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
-  dispatch(setProfileLoading);
+  dispatch(setProfileLoading());
   axios
     .get("/api/profiles")
     .then(res => {
@@ -27,9 +27,28 @@ export const getCurrentProfile = () => dispatch => {
     });
 };
 
+// Get profile by handle
+export const getProfileByHandle = handle => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get(`/api/profiles/handle/${handle}`)
+    .then(res => {
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data // the actual profile
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_PROFILE, // not GET_ERRORS
+        payload: null // we want to check if it's null later
+      });
+    });
+};
+
 // Get all profiles for all users
 export const getProfiles = () => dispatch => {
-  dispatch(setProfileLoading);
+  dispatch(setProfileLoading());
   axios
     .get("/api/profiles/all")
     .then(res => {
