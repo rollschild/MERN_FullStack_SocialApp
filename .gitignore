@@ -4,3 +4,4 @@ package-lock.json
 /client/package-lock.json
 /devconnector-theme
 /devconnector-S9
+/config/keys_dev.js
