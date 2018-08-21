@@ -5,12 +5,12 @@ import setAuthToken from "../utils/setAuthToken";
 
 // Register
 // This is an action creator
-// ...which will go ahead and despatch
+// ...which will go ahead and dispatch
 // ...this to the reducer along with the payload
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post("/api/users/register", userData)
-    .then(res => history.push("./login")) // redirect us to login page
+    .then(res => history.push("/login")) // redirect us to login page
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

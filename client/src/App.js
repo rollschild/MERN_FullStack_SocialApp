@@ -41,7 +41,7 @@ if (localStorage.jwtToken) {
     // TODO: also need to clear current profile
     store.dispatch(clearCurrentProfile());
     // Redirect to login
-    window.location.href = "./login";
+    window.location.href = "/login";
   }
 }
 

@@ -1,13 +1,14 @@
-img {
-  width: 100%;
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }
 
 .landing {
   position: relative;
-  background: url('./img/showcase.jpg') no-repeat;
+  background: url("./img/interstellar_asteroid.jpg") no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 80vh;
   margin-top: -24px;
   margin-bottom: -50px;
 }
