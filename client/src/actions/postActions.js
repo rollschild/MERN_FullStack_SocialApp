@@ -169,6 +169,6 @@ export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS
     // does not go through post reducer
-    // instead, go through errors reducer
+    // ...instead, go through errors reducer
   };
 };
